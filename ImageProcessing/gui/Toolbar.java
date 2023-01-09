@@ -1,7 +1,17 @@
 package gui;
 
-import javax.swing.JToolBar;
+import java.awt.Color;
 
-public class Toolbar extends JToolBar{
+import javax.swing.JPanel;
+
+public class Toolbar extends JPanel{
     
+    public Toolbar()
+    {
+        setBounds(0,0,1600,50);
+        setBackground(Color.LIGHT_GRAY) ;        
+    }
+
+    
+
 }
