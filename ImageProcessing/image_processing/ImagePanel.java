@@ -2,6 +2,9 @@ package image_processing;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+
+import filesystem.FileOpen;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -16,6 +19,11 @@ public class ImagePanel extends JPanel{
     public static JLabel image;
     public static BufferedImage HSV_img;
 
+    public static float[][][] Image_array;
+
+    public static int width;
+    public static int height; 
+
     public ImagePanel()
     {
         super();
@@ -26,10 +34,13 @@ public class ImagePanel extends JPanel{
     {
         try {
             file = ImageIO.read(imgFile);
+            FileOpen.setClear();
         } catch (IOException e) {
             file = null;
         }
         img = file;
+
+        
 
         image = new JLabel(new ImageIcon(img));
         add(image);
@@ -37,7 +48,8 @@ public class ImagePanel extends JPanel{
     }
 
     public static void setImg(Image icon)
-    {
+    {   
+        img = icon;
         image.setIcon(new ImageIcon(icon));
     }
 
@@ -54,21 +66,27 @@ public class ImagePanel extends JPanel{
     
     public static void RGB_to_HSV()
     {
-        int width = img.getWidth(image);
-        int height = img.getHeight(image);
 
-        for(int i  = 0; i < width; i++)
+        
+        width = img.getWidth(image);
+        height = img.getHeight(image);
+
+        float[] hsv = new float[3];
+
+        Image_array = new float[width][height][3];
+        for(int i  = 0; i < height; i++)
         {
-            for(int j = 0; j < height; j++)
+            for(int j = 0; j < width; j++)
             {
                 Color c = new Color(file.getRGB(j, i));
-                double[] a = RGB_to_HSV.RGBtoHSV(c.getRed(), c.getGreen(), c.getBlue());
-                Color newColor = new Color((int)a[0], (int)a[1], (int)a[2]);
-                HSV_img.setRGB(j, i, newColor.getRGB());
+
+                float[] a = Color.RGBtoHSB(c.getRed(), c.getGreen(), c.getBlue(), hsv);
+                Image_array[j][i] = a;
             }
         }
     
     }
+
 
     // public void paint(Graphics g)
     // {

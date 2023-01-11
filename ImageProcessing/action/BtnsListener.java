@@ -3,6 +3,8 @@ package action;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import image_processing.*;
+import main.Run;
+
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 
@@ -21,7 +23,7 @@ public class BtnsListener implements ActionListener
                 ImagePanel.setImg(Image_Processing.GrayScale(img));
                 break;
             case "HSV":
-                
+                Run.mainFrame.setHSV();
                 break;
             case "RGB조정":
 
@@ -32,6 +34,9 @@ public class BtnsListener implements ActionListener
                 break;
             case "Default":
                 ImagePanel.setDefault();
+                break;
+            case "Crop":
+                
                 break;
             default :
                 System.out.println("디폴트");

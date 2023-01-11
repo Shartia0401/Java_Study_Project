@@ -40,6 +40,7 @@ public class RGB_to_HSV {
         h = h * 1.0;
         s = s * 100.0;
         v = (v / 256.0) * 100.0;
+
         return new double[] { h, s, v };
     }
 }

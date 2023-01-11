@@ -4,12 +4,15 @@ import java.awt.Color;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.awt.image.Kernel;
+
+import main.Run;
+
 import java.awt.image.ConvolveOp;
 
 public class Image_Processing
 {
 
-    static BufferedImage changedImage;
+    private static BufferedImage changedImage;
     static Image img;
 
     public static Image GrayScale(BufferedImage is)//고쳐야함
@@ -75,13 +78,57 @@ public class Image_Processing
 
     
 
-    public Image RGB_scale(BufferedImage is)
+    public Image RGB_scale()
     {
         return img;
     }
 
-    public Image HSV_scale(BufferedImage is)
+    public static Image HSV_scale()
     {
+
+        ImagePanel.RGB_to_HSV();
+
+        changedImage = new BufferedImage(ImagePanel.width,ImagePanel.height, BufferedImage.TYPE_INT_RGB);
+
+        for(int i = 0; i < ImagePanel.height; i++)
+        {
+            for(int j = 0; j < ImagePanel.width; j++)
+            {
+                for(int k = 0; k < 3; k++)
+                {   if(k >= 1 && ImagePanel.Image_array[j][i][k] > 1)
+                    {
+
+                        ImagePanel.Image_array[j][i][k] += (Run.hsv[k]/100);
+                    }
+                    else if(ImagePanel.Image_array[j][i][k] < 359){
+                        ImagePanel.Image_array[j][i][k] += Run.hsv[k];
+                    }
+                    
+                }
+            }
+        }
+
+    
+        for(int i = 0; i < ImagePanel.height; i++)
+        {
+            for(int j = 0; j < ImagePanel.width; j++)
+            {
+                int[] RGB = HSV_to_RGB.HSVtoRGB(ImagePanel.Image_array[j][i]);
+
+                try {
+
+                    Color newColor = new Color(RGB[0], RGB[1], RGB[2]);
+                    changedImage.setRGB(j,i, newColor.getRGB());
+                } catch (IllegalArgumentException e) {
+                    System.out.println(RGB[0] + " "+ RGB[1] + " " +RGB[2] );
+                }
+            }
+
+        }
+
+
+        img = changedImage;
+
         return img;
     }
 

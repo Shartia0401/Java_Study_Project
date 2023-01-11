@@ -12,6 +12,7 @@ public class Frame extends JFrame{
     Toolbar toolbar;
     ImagePanel canvas;
     FileOpen openfile;
+    HSV_Frame hsvFrame;
 
     public Frame()
     {
@@ -53,6 +54,12 @@ public class Frame extends JFrame{
         Image image = icon.getImage();
         
         setIconImage(image);
+    }
+
+    public void setHSV()
+    {
+        hsvFrame = new HSV_Frame();
+        add(hsvFrame);
     }
 
 }

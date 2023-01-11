@@ -11,15 +11,15 @@ public class Toolbar extends JPanel{
 
     JButton[] btns;
 
-    String[] btns_name = {"Gray", "Edge", "HSV", "RGB", "Default"};
+    String[] btns_name = {"Gray", "Edge", "HSV", "RGB", "Default","Crop"};
 
     public Toolbar()
     {
-        setBounds(0,0,1600,40);
+        setBounds(0,0,1600,26);
         setBackground(Color.LIGHT_GRAY);
-        setLayout(new FlowLayout(FlowLayout.LEFT));      
+        setLayout(new FlowLayout(FlowLayout.LEFT,0,0));      
         setBtns();
-    }
+    } 
 
     private void setBtns()
     {
@@ -30,6 +30,7 @@ public class Toolbar extends JPanel{
         {
             btns[i] = new JButton();
             btns[i].setText(btns_name[i]);
+            btns[i].setBackground(Color.LIGHT_GRAY);
             btns[i].addActionListener(new BtnsListener());
             add(btns[i]);
         }

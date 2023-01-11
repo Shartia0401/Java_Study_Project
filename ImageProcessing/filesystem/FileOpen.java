@@ -2,6 +2,9 @@ package filesystem;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
+
+import main.Run;
+
 import java.io.File;
 
 public class FileOpen {
@@ -24,11 +27,18 @@ public class FileOpen {
         FileSelect.setApproveButtonText("Open");
     }
 
+    static public void setClear()
+    {
+        for(int i = 0; i < Run.hsv.length; i++)
+        {
+            Run.hsv[i] = 0;
+        }
+    }
+
     public void show()
     {
         FileSelect.showOpenDialog(FileSelect);
         file = FileSelect.getSelectedFile();
-        
     }
     
     public File getFile()
