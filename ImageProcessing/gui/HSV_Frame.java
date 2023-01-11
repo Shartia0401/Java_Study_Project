@@ -11,7 +11,7 @@ import action.*;
 
 public class HSV_Frame extends JFrame{
     
-    private final int hue_max = 360;
+    private final int hue_max = 359;
     private final int sa_max = 100;
     private final int value_max = 100;
 

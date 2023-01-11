@@ -44,7 +44,8 @@ public class ImagePanel extends JPanel{
 
         image = new JLabel(new ImageIcon(img));
         add(image);
-        image.setBounds(800 - img.getWidth(image)/2, 450- img.getHeight(image)/2 - 50 , img.getWidth(image), img.getHeight(image));
+        image.setBounds(
+            800 - img.getWidth(image)/2, 450- img.getHeight(image)/2 - 50 , img.getWidth(image), img.getHeight(image));
     }
 
     public static void setImg(Image icon)
@@ -64,33 +65,5 @@ public class ImagePanel extends JPanel{
     }
 
     
-    public static void RGB_to_HSV()
-    {
 
-        
-        width = img.getWidth(image);
-        height = img.getHeight(image);
-
-        float[] hsv = new float[3];
-
-        Image_array = new float[width][height][3];
-        for(int i  = 0; i < height; i++)
-        {
-            for(int j = 0; j < width; j++)
-            {
-                Color c = new Color(file.getRGB(j, i));
-
-                float[] a = Color.RGBtoHSB(c.getRed(), c.getGreen(), c.getBlue(), hsv);
-                Image_array[j][i] = a;
-            }
-        }
-    
-    }
-
-
-    // public void paint(Graphics g)
-    // {
-    //     System.out.println("1234");
-    //     g.drawImage(img,(640 - (img.getWidth(null))/2),(335 - img.getHeight(null)/2),null);
-    // }
 }

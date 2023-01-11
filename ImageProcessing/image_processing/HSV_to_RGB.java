@@ -36,6 +36,18 @@ public class HSV_to_RGB {
             rgb[1] = (int) Math.round(m * 255);
             rgb[2] = (int) Math.round((x + m) * 255);
         }
+
+        for(int i = 0; i < rgb.length; i++)
+        {
+            if(rgb[i] > 255)
+            {
+                rgb[i] = 255;
+            }
+            else if(rgb[i] < 0)
+            {
+                rgb[i] = 0;
+            }
+        }
         return rgb;
     }
 }

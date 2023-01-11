@@ -1,9 +1,12 @@
 package action;
 
+import javax.swing.ImageIcon;
 import javax.swing.JSlider;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-import image_processing.*;
+
+import image_processing.ImagePanel;
+import image_processing.Image_Processing;
 import main.Run;
 
 public class Value_SliderAction implements ChangeListener{
@@ -15,7 +18,6 @@ public class Value_SliderAction implements ChangeListener{
 
         Run.hsv[2] = slider.getValue();
 
-        Image_Processing.HSV_scale();
-
+        ImagePanel.image.setIcon(new ImageIcon(Image_Processing.HSV_scale()));
     }
 }

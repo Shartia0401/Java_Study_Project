@@ -1,6 +1,5 @@
 package action;
 
-
 import javax.swing.ImageIcon;
 import javax.swing.JSlider;
 import javax.swing.event.ChangeEvent;
@@ -15,7 +14,6 @@ public class Hue_SliderAction implements ChangeListener{
     @Override
     public void stateChanged(ChangeEvent e) {
         JSlider slider = (JSlider)e.getSource();
-
         System.out.println("Hue : "+slider.getValue());
 
         Run.hsv[0] = slider.getValue();

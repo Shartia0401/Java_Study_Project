@@ -46,8 +46,6 @@ public class Image_Processing
     }
 
 
-
-
     public static Image Edge_Detect(BufferedImage is)
     {
         changedImage = is;
@@ -74,19 +72,19 @@ public class Image_Processing
 
         img = changedImage;
         return img;
-    }
-
-    
+    }   
 
     public Image RGB_scale()
     {
         return img;
     }
 
+
+
     public static Image HSV_scale()
     {
 
-        ImagePanel.RGB_to_HSV();
+        RGB_to_HSV();
 
         changedImage = new BufferedImage(ImagePanel.width,ImagePanel.height, BufferedImage.TYPE_INT_RGB);
 
@@ -95,10 +93,19 @@ public class Image_Processing
             for(int j = 0; j < ImagePanel.width; j++)
             {
                 for(int k = 0; k < 3; k++)
-                {   if(k >= 1 && ImagePanel.Image_array[j][i][k] > 1)
+                {   if(k >= 1 && ImagePanel.Image_array[j][i][k] < 1)
                     {
-
-                        ImagePanel.Image_array[j][i][k] += (Run.hsv[k]/100);
+                        float a = (((float)Run.hsv[k])/100);
+                        if(a > 1)
+                        {
+                            a = 1;
+                        }
+                        else if(a < 0)
+                        {
+                            a = 0;
+                        }
+                        ImagePanel.Image_array[j][i][k] += a;
+                        
                     }
                     else if(ImagePanel.Image_array[j][i][k] < 359){
                         ImagePanel.Image_array[j][i][k] += Run.hsv[k];
@@ -125,8 +132,6 @@ public class Image_Processing
             }
 
         }
-
-
         img = changedImage;
 
         return img;
@@ -191,5 +196,31 @@ public class Image_Processing
 		} 
 		return ar; 
 	} 
+
+    public static void RGB_to_HSV()
+    {
+
+        
+        ImagePanel.width = ImagePanel.img.getWidth(null);
+        ImagePanel.height = ImagePanel.img.getHeight(null);
+
+        float[] hsv = new float[3];
+
+        ImagePanel.Image_array = new float[ImagePanel.width][ImagePanel.height][3];
+        for(int i  = 0; i < ImagePanel.height; i++)
+        {
+            for(int j = 0; j < ImagePanel.width; j++)
+            {
+                Color c = new Color(ImagePanel.file.getRGB(j, i));
+
+                float[] a = Color.RGBtoHSB(c.getRed(), c.getGreen(), c.getBlue(), hsv);
+                for(int k = 0; k < 3; k++)
+                {
+                    ImagePanel.Image_array[j][i][k] = a[k];
+                }
+            }
+        }
+    
+    }
 
 }
