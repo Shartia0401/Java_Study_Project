@@ -21,6 +21,4 @@ public class Menubar extends JMenuBar{  //TODO 메뉴바 나중에해야함
         add(editMenu);
     }
 
-
-
 }

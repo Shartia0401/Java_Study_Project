@@ -9,7 +9,7 @@ import java.awt.FlowLayout;
 
 public class Toolbar extends JPanel{
 
-    JButton[] btns;
+    public static JButton[] btns;
 
     String[] btns_name = {"Gray", "Edge", "HSV", "RGB", "Default","Crop"};
 

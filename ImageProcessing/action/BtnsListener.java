@@ -36,7 +36,14 @@ public class BtnsListener implements ActionListener
                 ImagePanel.setDefault();
                 break;
             case "Crop":
-                
+                if(Run.isCrop)
+                {
+                    Run.isCrop = false;
+                }
+                else
+                {
+                    Run.isCrop = true;
+                }
                 break;
             default :
                 System.out.println("디폴트");

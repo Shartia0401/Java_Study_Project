@@ -6,6 +6,7 @@ public class Run
 {
     public static Frame mainFrame; 
     public static int[] hsv = new int[3];
+    public static boolean isCrop = false;
     
 
     public Run()

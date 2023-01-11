@@ -3,6 +3,7 @@ package image_processing;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
+import action.CropTool;
 import filesystem.FileOpen;
 
 import java.awt.*;
@@ -43,6 +44,8 @@ public class ImagePanel extends JPanel{
         
 
         image = new JLabel(new ImageIcon(img));
+        image.addMouseListener(new CropTool());
+
         add(image);
         image.setBounds(
             800 - img.getWidth(image)/2, 450- img.getHeight(image)/2 - 50 , img.getWidth(image), img.getHeight(image));
