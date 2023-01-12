@@ -68,6 +68,7 @@ public class ImagePanel extends JPanel{
 
     public static void setDefault()
     {
+        Run.Currentimage = file;
         image.setIcon(new ImageIcon(file));
     }
 
