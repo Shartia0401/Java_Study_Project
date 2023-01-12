@@ -4,7 +4,9 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 
 import action.CropTool;
+import action.MouseDraged;
 import filesystem.FileOpen;
+import main.Run;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -42,9 +44,11 @@ public class ImagePanel extends JPanel{
         img = file;
 
         
-
+        Run.Currentimage = file;
         image = new JLabel(new ImageIcon(img));
         image.addMouseListener(new CropTool());
+        image.addMouseMotionListener(new MouseDraged());
+
 
         add(image);
         image.setBounds(

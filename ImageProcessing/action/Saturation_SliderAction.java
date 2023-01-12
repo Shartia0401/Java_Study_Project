@@ -18,6 +18,7 @@ public class Saturation_SliderAction implements ChangeListener{
 
         Run.hsv[1] = slider.getValue();
 
+        
         ImagePanel.image.setIcon(new ImageIcon(Image_Processing.HSV_scale()));
 
     }

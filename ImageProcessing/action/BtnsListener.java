@@ -5,8 +5,11 @@ import java.awt.event.ActionListener;
 import image_processing.*;
 import main.Run;
 
+import java.awt.Color;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
+
+import gui.Toolbar;
 
 public class BtnsListener implements ActionListener
 {
@@ -20,6 +23,7 @@ public class BtnsListener implements ActionListener
         {
             case "Gray":
                 img = ImagePanel.getImg();
+                Run.Currentimage = img;
                 ImagePanel.setImg(Image_Processing.GrayScale(img));
                 break;
             case "HSV":
@@ -30,6 +34,7 @@ public class BtnsListener implements ActionListener
                 break;
             case "Edge":
                 img = ImagePanel.getImg();
+                Run.Currentimage = img;
                 ImagePanel.setImg(Image_Processing.Edge_Detect(img));
                 break;
             case "Default":
@@ -39,9 +44,11 @@ public class BtnsListener implements ActionListener
                 if(Run.isCrop)
                 {
                     Run.isCrop = false;
+                    Toolbar.btns[5].setBackground(Color.LIGHT_GRAY);
                 }
                 else
                 {
+                    Toolbar.btns[5].setBackground(Color.DARK_GRAY);
                     Run.isCrop = true;
                 }
                 break;

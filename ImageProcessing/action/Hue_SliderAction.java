@@ -18,6 +18,7 @@ public class Hue_SliderAction implements ChangeListener{
 
         Run.hsv[0] = slider.getValue();
         
+        
         ImagePanel.image.setIcon(new ImageIcon(Image_Processing.HSV_scale()));
         
 

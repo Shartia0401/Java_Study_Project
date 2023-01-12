@@ -71,6 +71,7 @@ public class Image_Processing
         changedImage = toImage(ar);
 
         img = changedImage;
+        Run.Currentimage = changedImage;
         return img;
     }   
 
@@ -133,7 +134,7 @@ public class Image_Processing
 
         }
         img = changedImage;
-
+        Run.Currentimage = changedImage;
         return img;
     }
 
