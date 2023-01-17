@@ -39,7 +39,6 @@ public class Frame extends JFrame{
         try {
             canvas.setImageFile(openfile.getFile());
         } catch (IllegalArgumentException e) {
-            System.out.println("예외");
         }
         
         canvas.setBounds(0,40,1600,960);

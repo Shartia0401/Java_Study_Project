@@ -14,7 +14,6 @@ public class Value_SliderAction implements ChangeListener{
     @Override
     public void stateChanged(ChangeEvent e) {
         JSlider slider = (JSlider)e.getSource();
-        System.out.println("Value : "+ slider.getValue()); //TODO 디버그
 
         Run.hsv[2] = slider.getValue();
 

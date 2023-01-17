@@ -8,7 +8,6 @@ public class MouseDraged implements MouseMotionListener{
 
     @Override
     public void mouseDragged(MouseEvent e) {
-        System.out.println("드래그 "+e.getX() + " " + e.getY());
 
     }
 

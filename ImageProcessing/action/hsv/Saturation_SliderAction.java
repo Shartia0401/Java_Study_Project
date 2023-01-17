@@ -14,7 +14,6 @@ public class Saturation_SliderAction implements ChangeListener{
     @Override
     public void stateChanged(ChangeEvent e) {
         JSlider slider = (JSlider)e.getSource();
-        System.out.println("Saturation : "+slider.getValue()); //TODO 디버그
 
         Run.hsv[1] = slider.getValue();
 

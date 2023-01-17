@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.awt.image.Kernel;
-import java.nio.Buffer;
 
 import main.Run;
 
@@ -21,7 +20,7 @@ public class Image_Processing
 
         int width = is.getWidth(null);
         int height = is.getHeight(null);
-        System.out.println(width + " " + height);   //TODO 디버그
+
 
         changedImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 
@@ -177,7 +176,6 @@ public class Image_Processing
                     Color newColor = new Color(RGB[0], RGB[1], RGB[2]);
                     changedImage.setRGB(j,i, newColor.getRGB());
                 } catch (IllegalArgumentException e) {
-                    System.out.println(RGB[0] + " "+ RGB[1] + " " +RGB[2] ); //TODO 디버그
                 }
             }
 

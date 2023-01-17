@@ -53,7 +53,6 @@ public class BtnsListener implements ActionListener
                 }
                 break;
             default :
-                System.out.println("디폴트");
                 break;
         }
     }

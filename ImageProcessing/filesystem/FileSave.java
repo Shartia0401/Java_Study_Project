@@ -23,7 +23,7 @@ public class FileSave {
                 count++;
 
             } catch (IOException e) {
-                System.out.println("파일 없슴!"); //TODO 디버그
+
                 isFile = false;
             }   
         }
@@ -31,7 +31,7 @@ public class FileSave {
         try {
             File file = new File("CropImage\\image" + count + ".jpg");
             ImageIO.write(bf, "jpg", file);
-            System.out.println("gk"); //TODO 디버그
+
         } catch (Exception e) {
 
         }

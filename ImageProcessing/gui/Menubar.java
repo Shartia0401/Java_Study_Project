@@ -3,7 +3,7 @@ package gui;
 import javax.swing.*;
 import action.MenubarAct;
 
-public class Menubar extends JMenuBar{  //TODO 메뉴바 나중에해야함
+public class Menubar extends JMenuBar{
     public Menubar()
     {
         super();
