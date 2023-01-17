@@ -29,8 +29,8 @@ public class BtnsListener implements ActionListener
             case "HSV":
                 Run.mainFrame.setHSV();
                 break;
-            case "RGB조정":
-
+            case "RGB":
+                Run.mainFrame.setRGB();
                 break;
             case "Edge":
                 img = ImagePanel.getImg();

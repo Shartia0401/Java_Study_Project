@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.awt.image.Kernel;
+import java.nio.Buffer;
 
 import main.Run;
 
@@ -20,7 +21,7 @@ public class Image_Processing
 
         int width = is.getWidth(null);
         int height = is.getHeight(null);
-        System.out.println(width + " " + height);
+        System.out.println(width + " " + height);   //TODO 디버그
 
         changedImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 
@@ -40,7 +41,7 @@ public class Image_Processing
                 changedImage.setRGB(j, i, newColor.getRGB());
             }
         }
-
+        Run.Currentimage = changedImage;
         img = changedImage;
         return img;
     }
@@ -75,8 +76,56 @@ public class Image_Processing
         return img;
     }   
 
-    public Image RGB_scale()
+    public static Image RGB_scale()
     {
+        ImagePanel.width = ImagePanel.img.getWidth(null);
+        ImagePanel.height = ImagePanel.img.getHeight(null);
+
+        int width = ImagePanel.width;
+        int height = ImagePanel.height;
+        changedImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+
+        for(int i = 0; i < height; i++)
+        {
+            for(int j = 0; j < width; j++)
+            {
+
+                Color c = new Color(Run.Currentimage.getRGB(j,i));
+                int red = (c.getRed() + Run.rgb[0]);
+                if(red > 255)
+                {
+                    red = 255;
+                }
+                else if(red < 0)
+                {
+                    red = 0;
+                }
+                int green = (c.getGreen() + Run.rgb[1]);
+                if(green > 255)
+                {
+                    green = 255;
+                }
+                else if(green < 0)
+                {
+                    green = 0;
+                }
+                int blue =  (c.getBlue() + Run.rgb[2]);
+                if(blue > 255)
+                {
+                    blue = 255;
+                }
+                else if(blue < 0)
+                {
+                    blue = 0;
+                }
+
+
+                Color newColor = new Color(red, green, blue);
+                changedImage.setRGB(j, i, newColor.getRGB());
+            }
+        }
+
+        img = changedImage;
         return img;
     }
 
@@ -128,7 +177,7 @@ public class Image_Processing
                     Color newColor = new Color(RGB[0], RGB[1], RGB[2]);
                     changedImage.setRGB(j,i, newColor.getRGB());
                 } catch (IllegalArgumentException e) {
-                    System.out.println(RGB[0] + " "+ RGB[1] + " " +RGB[2] );
+                    System.out.println(RGB[0] + " "+ RGB[1] + " " +RGB[2] ); //TODO 디버그
                 }
             }
 

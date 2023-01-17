@@ -1,4 +1,4 @@
-package action;
+package action.rgb;
 
 import javax.swing.ImageIcon;
 import javax.swing.JSlider;
@@ -9,17 +9,20 @@ import image_processing.ImagePanel;
 import image_processing.Image_Processing;
 import main.Run;
 
-public class Saturation_SliderAction implements ChangeListener{
+public class Green_ScaleAct implements ChangeListener{
 
     @Override
     public void stateChanged(ChangeEvent e) {
         JSlider slider = (JSlider)e.getSource();
-        System.out.println("Saturation : "+slider.getValue());
+        System.out.println(slider.getValue());
 
-        Run.hsv[1] = slider.getValue();
-
+        Run.rgb[1] = slider.getValue();
         
-        ImagePanel.image.setIcon(new ImageIcon(Image_Processing.HSV_scale()));
+        
+        ImagePanel.image.setIcon(new ImageIcon(Image_Processing.RGB_scale()));
+        
+
 
     }
+
 }

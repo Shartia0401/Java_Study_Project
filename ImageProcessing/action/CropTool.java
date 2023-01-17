@@ -3,11 +3,8 @@ package action;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
 
-import image_processing.ImagePanel;
 import main.Run;
-import java.io.File;
-
-import javax.imageio.ImageIO;
+import filesystem.FileSave;
 
 public class CropTool implements MouseListener{
 
@@ -23,7 +20,7 @@ public class CropTool implements MouseListener{
 
     @Override
     public void mousePressed(MouseEvent e) {
-        System.out.println(e.getX() + " " + e.getY());
+        System.out.println(e.getX() + " " + e.getY()); //TODO 디버그
 
         startX = e.getX();
         startY = e.getY();
@@ -31,7 +28,7 @@ public class CropTool implements MouseListener{
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        System.out.println("마우스 땜");
+        System.out.println("마우스 땜"); //TODO 디버그
         endX = e.getX();
         endY = e.getY();
 
@@ -41,9 +38,10 @@ public class CropTool implements MouseListener{
 
             try {
 
-                File file = new File("CropImage\\image" + count + ".jpg");
-                ImageIO.write(newCrop, "jpg", file);
-                count++;
+                // File file = new File("CropImage\\image" + count + ".jpg");
+                // ImageIO.write(newCrop, "jpg", file);
+                // count++;
+                FileSave.Save(newCrop);
     
             } catch (Exception a) {
                 

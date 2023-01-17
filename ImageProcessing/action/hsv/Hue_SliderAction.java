@@ -1,4 +1,4 @@
-package action;
+package action.hsv;
 
 import javax.swing.ImageIcon;
 import javax.swing.JSlider;

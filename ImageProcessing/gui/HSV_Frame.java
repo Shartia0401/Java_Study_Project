@@ -7,7 +7,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
 
-import action.*;
+import action.hsv.Hue_SliderAction;
+import action.hsv.Saturation_SliderAction;
+import action.hsv.Value_SliderAction;
 
 public class HSV_Frame extends JFrame{
     
