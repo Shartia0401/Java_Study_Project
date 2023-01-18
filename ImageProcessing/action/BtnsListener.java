@@ -24,7 +24,7 @@ public class BtnsListener implements ActionListener
             case "Gray":
                 img = ImagePanel.getImg();
                 Run.Currentimage = img;
-                ImagePanel.setImg(Image_Processing.GrayScale(img));
+                ImagePanel.setImg(Image_Processing.GrayScale());
                 break;
             case "HSV":
                 Run.mainFrame.setHSV();
@@ -41,25 +41,10 @@ public class BtnsListener implements ActionListener
                 ImagePanel.setDefault();
                 break;
             case "선택도구":
-                if(Run.isCrop)
-                {
-                    CropTool.adlist.clear();    
-                    Run.isCrop = false;
-                    Toolbar.btns[5].setBackground(Color.LIGHT_GRAY);
-                    ImagePanel.setImg(Run.Currentimage);
-                    Toolbar.btns[6].setEnabled(false);
-                    Toolbar.btns[1].setEnabled(true);
-                }
-                else
-                {
-                    Toolbar.btns[5].setBackground(new Color(150,150,150));
-                    Run.isCrop = true;
-                    Toolbar.btns[6].setEnabled(true);
-                    Toolbar.btns[1].setEnabled(false);
-                }
+                scope();
                 break;
             case "자르기":
-                CropTool.Crop();
+                CropTool.save();
                 break;
             case "Face_detect":
                 if(Run.isdetect)
@@ -68,18 +53,49 @@ public class BtnsListener implements ActionListener
                     Run.isdetect = false;
                     ImagePanel.setImg(Run.Currentimage);
                     Toolbar.btns[6].setEnabled(false);
+                    CropTool.adlist.clear();
                 }
                 else
                 {
                     FileSave.OpencvImg();
                     OpenCV.Face_Detect();
                     Run.mainFrame.canvas.boxCreate();
-                    Toolbar.btns[6].setEnabled(true);
                     Run.isdetect = true;
+                    for(int[] ad : OpenCV.list)
+                    {
+                        int xy[] = {ad[0], ad[1], ad[0] + ad[2], ad[1] + ad[3]};
+                        CropTool.adlist.add(xy);
+                    }
+
+                    Toolbar.btns[5].setBackground(new Color(150,150,150));
+                    Run.isCrop = true;
+                    Toolbar.btns[6].setEnabled(true);
+                    Toolbar.btns[1].setEnabled(false);
+
                 }
                 break;
             default :
                 break;
+        }
+    }
+
+    public void scope()
+    {
+        if(Run.isCrop)
+        {
+            CropTool.adlist.clear();    
+            Run.isCrop = false;
+            Toolbar.btns[5].setBackground(Color.LIGHT_GRAY);
+            ImagePanel.setImg(Run.Currentimage);
+            Toolbar.btns[6].setEnabled(false);
+            Toolbar.btns[1].setEnabled(true);
+        }
+        else
+        {
+            Toolbar.btns[5].setBackground(new Color(150,150,150));
+            Run.isCrop = true;
+            Toolbar.btns[6].setEnabled(true);
+            Toolbar.btns[1].setEnabled(false);
         }
     }
 

@@ -16,54 +16,45 @@ public class Image_Processing
     private static BufferedImage changedImage;
     static Image img;
 
-    public static Image GrayScale(BufferedImage is)//고쳐야함
+    public static Image GrayScale()//고쳐야함
     {
+        ImagePanel.width = ImagePanel.img.getWidth(null);
+        ImagePanel.height = ImagePanel.img.getHeight(null);
 
-        int width = is.getWidth(null);
-        int height = is.getHeight(null);
+        int width = ImagePanel.width;
+        int height = ImagePanel.height;
 
 
         changedImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 
         if(Run.isCrop)
         {
-            for(int i = 0; i < height; i++)
+            for(int[] ad : CropTool.adlist)
             {
-                for(int j = 0; j < width; j++)
-                {                        
-                    Color c = new Color(is.getRGB(j,i));
-
-                    if(CropTool.startX <= j && CropTool.endX >= j && CropTool.startY <= i && CropTool.endY >= i )
-                    {
-
-                        // int red = (int)(c.getRed() * 0.299);
-                        // int green = (int)(c.getGreen() * 0.587);
-                        // int blue =  (int)(c.getBlue() * 0.114);
-                        int red = c.getRed();
-                        int green = c.getGreen();
-                        int blue = c.getBlue();
-                        Color newColor = new Color((int)((red+green+blue)/3), (int)((red+green+blue)/3), (int)((red+green+blue)/3));
-                        changedImage.setRGB(j, i, newColor.getRGB());
-                    }
-                    else
-                    {
-                        int red = c.getRed();
-                        int green = c.getGreen();
-                        int blue = c.getBlue();
-                        Color newColor = new Color(red,green,blue);
-                        changedImage.setRGB(j, i, newColor.getRGB());
-                    }
-                    
-
-                }
-            }
-            for(int i = CropTool.startY; i < CropTool.endY; i++)
-            {
-                for(int j = CropTool.startX ; j < CropTool.endX; j++)
+                for(int i = 0; i < height; i++)
                 {
-
-
+                    for(int j = 0; j < width; j++)
+                    {                        
+                        Color c = new Color(Run.Currentimage.getRGB(j,i));
+                        Color newColor;
+                        if(ad[0] <= j && ad[2] >= j && ad[1] <= i && ad[3] >= i )
+                        {
+                            int red = c.getRed();
+                            int green = c.getGreen();
+                            int blue = c.getBlue();
+                            newColor = new Color((int)((red+green+blue)/3), (int)((red+green+blue)/3), (int)((red+green+blue)/3));
+                        }
+                        else
+                        {
+                            int red = c.getRed();
+                            int green = c.getGreen();
+                            int blue = c.getBlue();
+                            newColor = new Color(red,green,blue);
+                        }
+                        changedImage.setRGB(j, i, newColor.getRGB());
+                    }
                 }
+                Run.Currentimage = changedImage;
             }
         }
         else
@@ -73,10 +64,8 @@ public class Image_Processing
                 for(int j = 0; j < width; j++)
                 {
 
-                    Color c = new Color(is.getRGB(j,i));
-                // int red = (int)(c.getRed() * 0.299);
-                // int green = (int)(c.getGreen() * 0.587);
-                // int blue =  (int)(c.getBlue() * 0.114);
+                    Color c = new Color(Run.Currentimage.getRGB(j,i));
+
                     int red = c.getRed();
                     int green = c.getGreen();
                     int blue = c.getBlue();
@@ -129,58 +118,81 @@ public class Image_Processing
         int height = ImagePanel.height;
         changedImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 
-        for(int i = 0; i < height; i++)
+
+                
+        if(Run.isCrop)
         {
-            for(int j = 0; j < width; j++)
+            for(int[] ad : CropTool.adlist)
             {
-
-                Color c = new Color(Run.Currentimage.getRGB(j,i));
-
-                int red;
-                int green;
-                int blue;
-
-                if(Run.isCrop)
+                System.out.println(ad[0] +" " +ad[1] +" "+ ad[2] + " " + ad[3]);
+                for(int i = 0; i < height; i++)
                 {
-                    if(CropTool.startX <= j && CropTool.endX >= j && CropTool.startY <= i && CropTool.endY >= i )
+                    for(int j = 0; j < width; j++)
                     {
-                        red = (c.getRed() + Run.rgb[0]);
-                        if(red > 255)
-                        {
-                            red = 255;
-                        }
-                        else if(red < 0)
-                        {
-                            red = 0;
-                        }
-                        green = (c.getGreen() + Run.rgb[1]);
+        
+                        Color c = new Color(Run.Currentimage.getRGB(j,i));
+                        
+                        int red;
+                        int green;
+                        int blue;
 
-                        if(green > 255)
+                        if(ad[0] <= j && ad[2] >= j && ad[1] <= i && ad[3] >= i )
                         {
-                            green = 255;
+                            red = (c.getRed() + Run.rgb[0]);
+                            if(red > 255)
+                            {
+                                red = 255;
+                            }
+                            else if(red < 0)
+                            {
+                                red = 0;
+                            }
+                            green = (c.getGreen() + Run.rgb[1]);
+        
+                            if(green > 255)
+                            {
+                                green = 255;
+                            }
+                            else if(green < 0)
+                            {
+                                green = 0;
+                            }   
+                            blue =  (c.getBlue() + Run.rgb[2]);
+                            if(blue > 255)
+                            {
+                                blue = 255;
+                            }
+                            else if(blue < 0)
+                            {
+                                blue = 0;
+                            }
                         }
-                        else if(green < 0)
+                        else
                         {
-                            green = 0;
-                        }   
-                        blue =  (c.getBlue() + Run.rgb[2]);
-                        if(blue > 255)
-                        {
-                            blue = 255;
+                            red = c.getRed();
+                            green = c.getGreen();
+                            blue = c.getBlue();
                         }
-                        else if(blue < 0)
-                        {
-                            blue = 0;
-                        }
-                    }
-                    else
-                    {
-                    red = c.getRed();
-                    green = c.getGreen();
-                    blue = c.getBlue();
+                        
+                        Color newColor = new Color(red, green, blue);
+                        changedImage.setRGB(j, i, newColor.getRGB());
                     }
                 }
-                else{
+                Run.Currentimage = changedImage;
+            }
+        }
+        else
+        {
+            for(int i = 0; i < height; i++)
+            {
+                for(int j = 0; j < width; j++)
+                {
+    
+                    Color c = new Color(Run.Currentimage.getRGB(j,i));
+    
+                    int red;
+                    int green;
+                    int blue;
                     red = (c.getRed() + Run.rgb[0]);
                     if(red > 255)
                     {
@@ -191,7 +203,7 @@ public class Image_Processing
                         red = 0;
                     }
                     green = (c.getGreen() + Run.rgb[1]);
-
+    
                     if(green > 255)
                     {
                         green = 255;
@@ -209,11 +221,10 @@ public class Image_Processing
                     {
                         blue = 0;
                     }
+    
+                    Color newColor = new Color(red, green, blue);
+                    changedImage.setRGB(j, i, newColor.getRGB());
                 }
-                
-
-                Color newColor = new Color(red, green, blue);
-                changedImage.setRGB(j, i, newColor.getRGB());
             }
         }
 
@@ -231,17 +242,51 @@ public class Image_Processing
 
         changedImage = new BufferedImage(ImagePanel.width,ImagePanel.height, BufferedImage.TYPE_INT_RGB);
 
-        for(int i = 0; i < ImagePanel.height; i++)
+        if(Run.isCrop)
         {
-            for(int j = 0; j < ImagePanel.width; j++)
-            {
-
-                for(int k = 0; k < 3; k++)
-                {   
-                    if(Run.isCrop)
+           for(int[] ad : CropTool.adlist)
+           {
+                for(int i = 0; i < ImagePanel.height; i++)
+                {
+                    for(int j = 0; j < ImagePanel.width; j++)
                     {
-                        if(CropTool.startX <= j && CropTool.endX >= j && CropTool.startY <= i && CropTool.endY >= i )
-                        {
+    
+                        for(int k = 0; k < 3; k++)
+                        {   
+                            if(ad[0] <= j && ad[2] >= j && ad[1] <= i && ad[3] >= i )
+                            {
+                                if(k >= 1 && ImagePanel.Image_array[j][i][k] < 1)
+                                {
+                                    float a = (((float)Run.hsv[k])/100);
+                                    if(a > 1)
+                                    {
+                                        a = 1;
+                                    }
+                                    else if(a < 0)
+                                    {
+                                        a = 0;
+                                    }
+                                    ImagePanel.Image_array[j][i][k] += a;
+                                }
+                                else if(ImagePanel.Image_array[j][i][k] < 359)
+                                {
+                                ImagePanel.Image_array[j][i][k] += Run.hsv[k];
+                                }
+                            }
+                        }
+                    }
+                }
+           }
+        }
+        else
+        {
+            for(int i = 0; i < ImagePanel.height; i++)
+            {
+                for(int j = 0; j < ImagePanel.width; j++)
+                {
+    
+                    for(int k = 0; k < 3; k++)
+                    {   
                             if(k >= 1 && ImagePanel.Image_array[j][i][k] < 1)
                             {
                                 float a = (((float)Run.hsv[k])/100);
@@ -259,37 +304,12 @@ public class Image_Processing
                             else if(ImagePanel.Image_array[j][i][k] < 359)
                             {
                                 ImagePanel.Image_array[j][i][k] += Run.hsv[k];
-                            }
-                        }
-
+                            }  
                     }
-                    else
-                    {
-                        if(k >= 1 && ImagePanel.Image_array[j][i][k] < 1)
-                        {
-                            float a = (((float)Run.hsv[k])/100);
-                            if(a > 1)
-                            {
-                                a = 1;
-                            }
-                            else if(a < 0)
-                            {
-                                a = 0;
-                            }
-                            ImagePanel.Image_array[j][i][k] += a;
-                            
-                        }
-                        else if(ImagePanel.Image_array[j][i][k] < 359)
-                        {
-                            ImagePanel.Image_array[j][i][k] += Run.hsv[k];
-                        }
-                    }
-                       
                 }
             }
         }
 
-    
         for(int i = 0; i < ImagePanel.height; i++)
         {
             for(int j = 0; j < ImagePanel.width; j++)

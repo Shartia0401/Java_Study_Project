@@ -46,44 +46,24 @@ public class CropTool implements MouseListener, MouseMotionListener{
         if(Run.isCrop)
         {
             int [] adr = {startX, startY, endX, endY};
-            adlist.add(count, adr);
+            adlist.add(adr);
             System.out.println(adr[0]+" "+adr[1]+" "+adr[2]+" "+adr[3]);
-            count++;
 
             Run.mainFrame.canvas.setRect();
             Run.mainFrame.canvas.draw();
         }
     }
 
-    public static void Crop()
-    {
-        if(!Run.isdetect)
-        {
-            save();
-        }
-        else
-        {
-            for(int[] address : OpenCV.list )
-            {
-                startX = address[0];
-                startY = address[1];
-                endX = address[0] + address[2];
-                endY = address[1] + address[3];
-                System.out.println(startX);
-                System.out.println(startY);
-                System.out.println(endX);
-                System.out.println(endY);
-                save();
-            }
-        }
-    }
 
-    private static void save()
+    public static void save()
     {
-        BufferedImage newCrop = Run.Currentimage.getSubimage(startX, startY, (endX - startX), (endY - startY));
-        try {
-            FileSave.Save(newCrop);
-        } catch (Exception a) {
+        for(int[] ad : adlist)
+        {
+            BufferedImage newCrop = Run.Currentimage.getSubimage(ad[0], ad[1], (ad[2] - ad[0]), (ad[3] - ad[1]));
+            try {
+                FileSave.Save(newCrop);
+            } catch (Exception a) {
+            }
         }
     }
     
