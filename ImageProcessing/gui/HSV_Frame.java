@@ -60,9 +60,9 @@ public class HSV_Frame extends JFrame{
 
     private void setJSlider()
     {
-        hue = new JSlider(0,hue_max);
-        saturation = new JSlider(0,sa_max);
-        value = new JSlider(0, value_max);
+        hue = new JSlider(0,hue_max,0);
+        saturation = new JSlider(0,sa_max,0);
+        value = new JSlider(0, value_max,0);
 
         hue.setPaintTicks(true);
         hue.setPaintLabels(true);

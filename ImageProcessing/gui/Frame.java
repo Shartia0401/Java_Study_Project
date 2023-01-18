@@ -11,7 +11,7 @@ public class Frame extends JFrame{
     
     Menubar menubar;
     Toolbar toolbar;
-    ImagePanel canvas;
+    public ImagePanel canvas;
     FileOpen openfile;
     HSV_Frame hsvFrame;
     RGB_Scale_Frame rgbFrame;

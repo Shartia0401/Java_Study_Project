@@ -2,10 +2,8 @@ package filesystem;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
-
-import main.Run;
-
 import java.io.File;
+import main.Run;
 
 public class FileOpen {
     

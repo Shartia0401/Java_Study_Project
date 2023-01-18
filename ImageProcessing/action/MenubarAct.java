@@ -26,8 +26,5 @@ public class MenubarAct implements ActionListener{
                 FileSave.Save(Run.Currentimage);
                 break;
         }
-    }
-
-
-    
+    }   
 }

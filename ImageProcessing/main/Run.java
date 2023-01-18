@@ -10,6 +10,7 @@ public class Run
     public static int[] rgb = new int[3];
     public static boolean isCrop = false;
     public static BufferedImage Currentimage;
+    public static boolean isdetect = false;
     
 
     public Run()

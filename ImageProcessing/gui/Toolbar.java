@@ -11,7 +11,7 @@ public class Toolbar extends JPanel{
 
     public static JButton[] btns;
 
-    String[] btns_name = {"Gray", "Edge", "HSV", "RGB", "Default","Crop"};
+    String[] btns_name = {"Gray", "Edge", "HSV", "RGB", "Default","선택도구", "자르기", "Face_detect"};
 
     public Toolbar()
     {
@@ -34,6 +34,7 @@ public class Toolbar extends JPanel{
             btns[i].addActionListener(new BtnsListener());
             add(btns[i]);
         }
+        btns[6].setEnabled(false);
 
     }   
 

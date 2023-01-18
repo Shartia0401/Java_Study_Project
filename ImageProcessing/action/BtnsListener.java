@@ -2,13 +2,14 @@ package action;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import image_processing.*;
-import main.Run;
-
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 
+import image_processing.*;
+import main.Run;
+import opencv.OpenCV;
+import filesystem.FileSave;
 import gui.Toolbar;
 
 public class BtnsListener implements ActionListener
@@ -40,17 +41,43 @@ public class BtnsListener implements ActionListener
             case "Default":
                 ImagePanel.setDefault();
                 break;
-            case "Crop":
+            case "선택도구":
                 if(Run.isCrop)
                 {
+
                     Run.isCrop = false;
                     Toolbar.btns[5].setBackground(Color.LIGHT_GRAY);
+                    ImagePanel.setImg(Run.Currentimage);
+                    Toolbar.btns[6].setEnabled(false);
+                    Toolbar.btns[1].setEnabled(true);
                 }
                 else
                 {
-                    Toolbar.btns[5].setBackground(Color.DARK_GRAY);
+                    Toolbar.btns[5].setBackground(new Color(150,150,150));
                     Run.isCrop = true;
+                    Toolbar.btns[6].setEnabled(true);
+                    Toolbar.btns[1].setEnabled(false);
                 }
+                break;
+            case "자르기":
+                CropTool.Crop();
+                break;
+            case "Face_detect":
+                if(Run.isdetect)
+                {
+                    Run.isdetect = false;
+                    ImagePanel.setImg(Run.Currentimage);
+                    Toolbar.btns[6].setEnabled(false);
+                }
+                else
+                {
+                    FileSave.OpencvImg();
+                    OpenCV.Face_Detect();
+                    Run.mainFrame.canvas.boxCreate();
+                    Toolbar.btns[6].setEnabled(true);
+                    Run.isdetect = true;
+                }
+
                 break;
             default :
                 break;

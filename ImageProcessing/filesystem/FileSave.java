@@ -3,8 +3,9 @@ package filesystem;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-
 import javax.imageio.ImageIO;
+
+import main.Run;
 
 public class FileSave {
 
@@ -31,6 +32,17 @@ public class FileSave {
         try {
             File file = new File("CropImage\\image" + count + ".jpg");
             ImageIO.write(bf, "jpg", file);
+
+        } catch (Exception e) {
+
+        }
+    }
+
+    public static void OpencvImg()
+    {
+        try {
+            File file = new File("opencv\\imageSaved\\image.jpg");
+            ImageIO.write(Run.Currentimage, "jpg", file);
 
         } catch (Exception e) {
 
