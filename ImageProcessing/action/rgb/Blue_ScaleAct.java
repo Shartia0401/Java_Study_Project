@@ -15,7 +15,7 @@ public class Blue_ScaleAct implements ChangeListener{
     public void stateChanged(ChangeEvent e) {
         JSlider slider = (JSlider)e.getSource();
         System.out.println(slider.getValue());
-
+        
         Run.rgb[2] = slider.getValue();
         
         

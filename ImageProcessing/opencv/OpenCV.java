@@ -39,8 +39,5 @@ public class OpenCV {
          list.add(count, address);
          count++;
       }
-
-
    }
-
 }

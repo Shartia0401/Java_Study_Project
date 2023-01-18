@@ -180,8 +180,7 @@ public class Image_Processing
                     blue = c.getBlue();
                     }
                 }
-                else
-                {
+                else{
                     red = (c.getRed() + Run.rgb[0]);
                     if(red > 255)
                     {

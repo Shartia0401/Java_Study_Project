@@ -2,6 +2,7 @@ package action;
 
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 import filesystem.*;
 import main.Run;
@@ -14,21 +15,20 @@ public class CropTool implements MouseListener, MouseMotionListener{
     public static int startY;
     public static int endX;
     public static int endY;
-
+    
 
     boolean isrect = false;
-    int count = 0;
+    static int count = 0;
+    public static ArrayList<int[]> adlist = new ArrayList<int[]>();
+
 
     @Override
     public void mouseClicked(MouseEvent e) {}
 
     @Override
     public void mousePressed(MouseEvent e) {
-
         startX = e.getX();
         startY = e.getY();
-
-
     }
 
     @Override
@@ -42,8 +42,14 @@ public class CropTool implements MouseListener, MouseMotionListener{
 
     public static void drew()
     {
+
         if(Run.isCrop)
         {
+            int [] adr = {startX, startY, endX, endY};
+            adlist.add(count, adr);
+            System.out.println(adr[0]+" "+adr[1]+" "+adr[2]+" "+adr[3]);
+            count++;
+
             Run.mainFrame.canvas.setRect();
             Run.mainFrame.canvas.draw();
         }
@@ -69,7 +75,6 @@ public class CropTool implements MouseListener, MouseMotionListener{
                 System.out.println(endY);
                 save();
             }
-
         }
     }
 

@@ -5,7 +5,6 @@ import java.awt.event.ActionListener;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
-
 import image_processing.*;
 import main.Run;
 import opencv.OpenCV;
@@ -44,7 +43,7 @@ public class BtnsListener implements ActionListener
             case "선택도구":
                 if(Run.isCrop)
                 {
-
+                    CropTool.adlist.clear();    
                     Run.isCrop = false;
                     Toolbar.btns[5].setBackground(Color.LIGHT_GRAY);
                     ImagePanel.setImg(Run.Currentimage);
@@ -65,6 +64,7 @@ public class BtnsListener implements ActionListener
             case "Face_detect":
                 if(Run.isdetect)
                 {
+                    OpenCV.list.clear();
                     Run.isdetect = false;
                     ImagePanel.setImg(Run.Currentimage);
                     Toolbar.btns[6].setEnabled(false);
@@ -77,7 +77,6 @@ public class BtnsListener implements ActionListener
                     Toolbar.btns[6].setEnabled(true);
                     Run.isdetect = true;
                 }
-
                 break;
             default :
                 break;
