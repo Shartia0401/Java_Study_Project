@@ -3,6 +3,7 @@ package image_processing;
 import action.CropTool;
 import filesystem.FileOpen;
 import main.Run;
+import gui.Toolbar;
 import opencv.OpenCV;
 
 import java.awt.*;
@@ -44,6 +45,14 @@ public class ImagePanel extends JPanel{
             file = null;
         }
 
+        Toolbar.btns[0].setEnabled(true);
+        Toolbar.btns[1].setEnabled(true);
+        Toolbar.btns[2].setEnabled(true);
+        Toolbar.btns[3].setEnabled(true);
+        Toolbar.btns[4].setEnabled(true);
+        Toolbar.btns[5].setEnabled(true);
+        Toolbar.btns[6].setEnabled(false);
+        Toolbar.btns[7].setEnabled(true);
 
         if(file.getWidth() > 1100 || file.getHeight() > 900)
         {
@@ -97,6 +106,15 @@ public class ImagePanel extends JPanel{
     {
         Run.Currentimage = file;
         image.setIcon(new ImageIcon(file));
+        CropTool.adlist.clear();
+        OpenCV.list.clear();
+
+        Run.isCrop = false;
+        Toolbar.btns[5].setBackground(Color.LIGHT_GRAY);
+        Toolbar.btns[6].setEnabled(false);
+        Toolbar.btns[1].setEnabled(true);
+
+
     }
 
     public void draw()

@@ -1,10 +1,14 @@
 package gui;
 
 import javax.swing.*;
+
+import action.CropTool;
+
 import java.awt.*;
 import filesystem.*;
 import image_processing.*;
 import main.Run;
+import opencv.OpenCV;
 
 
 public class Frame extends JFrame{
@@ -39,6 +43,14 @@ public class Frame extends JFrame{
         try {
             canvas.setImageFile(openfile.getFile());
         } catch (IllegalArgumentException e) {
+            Toolbar.btns[0].setEnabled(false);
+            Toolbar.btns[1].setEnabled(false);
+            Toolbar.btns[2].setEnabled(false);
+            Toolbar.btns[3].setEnabled(false);
+            Toolbar.btns[4].setEnabled(false);
+            Toolbar.btns[5].setEnabled(false);
+            Toolbar.btns[6].setEnabled(false);
+            Toolbar.btns[7].setEnabled(false);
         }
         
         canvas.setBounds(0,40,1600,960);
@@ -103,6 +115,22 @@ public class Frame extends JFrame{
     public void setnull()
     {
         Run.Currentimage = null;
+        OpenCV.list.clear();
+        CropTool.adlist.clear();    
+        Run.isCrop = false;
+        Toolbar.btns[5].setBackground(Color.LIGHT_GRAY);
+        Toolbar.btns[6].setEnabled(false);
+        Toolbar.btns[1].setEnabled(true);
+
+        Toolbar.btns[0].setEnabled(false);
+        Toolbar.btns[1].setEnabled(false);
+        Toolbar.btns[2].setEnabled(false);
+        Toolbar.btns[3].setEnabled(false);
+        Toolbar.btns[4].setEnabled(false);
+        Toolbar.btns[5].setEnabled(false);
+        Toolbar.btns[6].setEnabled(false);
+        Toolbar.btns[7].setEnabled(false);
+
         canvas.removeAll();
         remove(canvas);
         repaint();

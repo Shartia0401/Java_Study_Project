@@ -54,6 +54,10 @@ public class BtnsListener implements ActionListener
                     ImagePanel.setImg(Run.Currentimage);
                     Toolbar.btns[6].setEnabled(false);
                     CropTool.adlist.clear();
+
+                    Run.isCrop = false;
+                    Toolbar.btns[5].setBackground(Color.LIGHT_GRAY);
+                    Toolbar.btns[1].setEnabled(true);
                 }
                 else
                 {
